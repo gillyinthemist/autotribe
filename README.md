@@ -1,1 +1,1 @@
-# garage-collective
+# AutoTribe
