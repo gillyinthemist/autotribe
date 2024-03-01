@@ -1,7 +1,7 @@
 import Vehicles from '@/app/ui/garage/vehicles';
 import FilterButtons from '@/app/ui/garage/filter-buttons';
 import AddButtons from '@/app/ui/garage/add-buttons';
-
+import Breadcrumbs from '@/app/ui/garage/breadcrumbs';
 
 export default async function Page({
   searchParams,
@@ -15,9 +15,11 @@ export default async function Page({
   return (
     <main>
       {/* <AddButtons/> */}
-      <h1 className={`mb-4 text-xl md:text-2xl`}>
-        My Garage
-      </h1>
+      <Breadcrumbs
+        breadcrumbs={[
+          { label: 'Garage', href: '/dashboard/garage', active:true },
+        ]}
+      />
       <div className="flex flex-col items-center gap-10">
         <FilterButtons/>
         <Vehicles filterBy={filter}/>

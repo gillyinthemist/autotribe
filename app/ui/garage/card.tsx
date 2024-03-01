@@ -11,8 +11,8 @@ export function Card({ make, model, image }: { make: string; model:string; image
         className="object-cover object-left w-full h-full"
       />
       </div>
-      <div className="h-[50px] bg-mag p-3 text-center z-10">
-        <p className="text-night">{make} {model}</p>
+      <div className="h-[50px] bg-raisin p-3 text-center z-10">
+        <p>{make} {model}</p>
       </div>
     </div>
   );

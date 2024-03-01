@@ -1,3 +1,5 @@
+import { StringValidation } from "zod";
+
 export type User = {
   id: string;
   email: string;
@@ -13,8 +15,10 @@ export type VehicleDetails = {
   colour: string;
   image: string;
   year: string;
-  mot: string;
-  tax: string;
+  mot_days: string;
+  tax_days: string;
+  mot_date: string;
+  tax_date: string;
   description: string;
   current: boolean;
 };
