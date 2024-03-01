@@ -15,8 +15,14 @@ export default async function Page({
   return (
     <main>
       {/* <AddButtons/> */}
-      <FilterButtons/>
-      <Vehicles filterBy={filter}/>
+      <h1 className={`mb-4 text-xl md:text-2xl`}>
+        My Garage
+      </h1>
+      <div className="flex flex-col items-center gap-10">
+        <FilterButtons/>
+        <Vehicles filterBy={filter}/>
+      </div>
+      
     </main>
   );
 }
