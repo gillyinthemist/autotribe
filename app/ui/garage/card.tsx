@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-export function Card({ vrm, image }: { vrm: string; image: string }) {
+export function Card({ make, model, image }: { make: string; model:string; image: string }) {
   return (
     <div className="flex flex-col w-[300px] rounded-xl overflow-hidden">
       <Image
@@ -11,7 +11,7 @@ export function Card({ vrm, image }: { vrm: string; image: string }) {
 
       />
       <div className="bg-mag p-3 text-center">
-        <p className="text-night">{vrm}</p>
+        <p className="text-night">{make} {model}</p>
       </div>
     </div>
   );

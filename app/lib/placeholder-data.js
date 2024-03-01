@@ -1,3 +1,14 @@
+const users = [
+  {
+    id: '410544b2-4001-4271-9855-fec4b6a6442a',
+    first_name: 'Arjun',
+    last_name: 'Gill',
+    username: '@gillsbmw',
+    email: 'user@example.com',
+    password: 'password',
+    profile_pic: 'https://scontent.cdninstagram.com/v/t51.2885-19/311030754_863920138352176_7083972161174976267_n.jpg?stp=dst-jpg_s320x320&_nc_ht=scontent-lhr6-2.cdninstagram.com&_nc_cat=104&_nc_ohc=mwg8Cj5RMpsAX_yu0MW&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_AfBTIcRMmYjUkkXno8aIHgZ5mqaXB7emyixZepVwTnR6OQ&oe=65E7908C&_nc_sid=8b3546',
+  },
+];
 
 const vehicles = [
   {
@@ -87,5 +98,5 @@ const vehicles = [
 ];
 
 module.exports = {
-  vehicles
+  vehicles, users
 };

@@ -19,7 +19,7 @@ const links = [
     icon: DocumentDuplicateIcon,
   },
   { name: 'Add Car', href: '/dashboard/garage/add-vehicle', icon: UserGroupIcon },
-  { name: 'New Diary Entry', href: '/dashboard/garage/add-vehicle', icon: UserGroupIcon },
+  { name: 'New Diary Entry', href: '/', icon: UserGroupIcon },
   { name: 'Settings', href: '/dashboard/settings', icon: UserGroupIcon },
 ];
 
