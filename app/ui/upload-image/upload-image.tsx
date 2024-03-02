@@ -31,7 +31,7 @@ export default function UploadImage({u} : any) {
               <i className="fa-sharp fa-solid fa-circle-check text-4xl text-green-600"></i>
             )}
 
-            <h2 className="text-center text-xl font-semibold text-raisin">
+            <h2 className="text-center text-lg font-semibold text-raisin">
               {u.isSuccess ? 'Uploaded Successfully!' : 'Upload an image (optional)'}
             </h2>
 

@@ -2,6 +2,12 @@ import Vehicles from '@/app/ui/garage/vehicles';
 import FilterButtons from '@/app/ui/garage/filter-buttons';
 import AddButtons from '@/app/ui/garage/add-buttons';
 import Breadcrumbs from '@/app/ui/garage/breadcrumbs';
+import { Metadata } from 'next';
+
+
+export const metadata: Metadata = {
+  title: 'My Garage',
+};
 
 export default async function Page({
   searchParams,

@@ -3,6 +3,7 @@ import { VehicleDetails } from '../../lib/definitions';
 import { numberPlate } from '../fonts';
 import { fetchTaxMot } from '@/app/lib/data';
 
+
 export default async function VehicleOverview({
   vehicle,
 }: {

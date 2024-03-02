@@ -1,8 +1,14 @@
-import { fetchTaxMot, fetchVehicleById } from '@/app/lib/data';
+import { fetchVehicleById } from '@/app/lib/data';
 import Breadcrumbs from '@/app/ui/garage/breadcrumbs';
 import VehicleDiary from '@/app/ui/vehicle-detail/vehicle-diary';
 import VehicleOverview from '@/app/ui/vehicle-detail/vehicle-overview';
+import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+
+export const metadata: Metadata = {
+  title: 'Details',
+};
+
 
 export default async function Page({ params }: { params: { id: string } }) {
   const id = params.id;
