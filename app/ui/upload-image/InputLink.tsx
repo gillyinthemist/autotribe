@@ -2,6 +2,7 @@ import { toast } from 'react-toastify';
 import copy from 'copy-to-clipboard';
 
 import type { FC } from 'react';
+import { Button } from '../button';
 
 type InputLinkProps = {
 	value: string;
@@ -9,20 +10,20 @@ type InputLinkProps = {
 
 export const InputLink: FC<InputLinkProps> = ({ value = 'Not Value' }) => {
 	return (
-		<div className='relative w-full'>
-			<label className='relative bg-green-300'>
+		<div className='w-full'>
+			<label className='relative'>
 				<input
 					type='text'
 					disabled
 					value={value}
 					readOnly
-					className='w-full h-10 text-sm text-gray-500 truncate pr-24 bg-gray-100 pl-2 border border-gray-300 rounded-lg overflow-hidden cursor-not-allowed'
+					className='w-full h-10 text-sm truncate pr-24 bg-white text-night pl-2 border border-raisin rounded-lg overflow-hidden cursor-not-allowed'
 				/>
 
-				<button
+				<Button
 					type='button'
 					title='Press to copy'
-					className='absolute top-1/2 -translate-y-1/2 block right-1 bg-blue-500 hover:bg-blue-600 transition-colors text-gray-50 text-sm w-20 h-8 rounded-lg shadow-xl shadow-blue-500/50'
+					className='absolute top-1/2 -translate-y-1/2 block right-0'
 					onClick={() => {
 						const isCopy = copy(value || '');
 						if (isCopy) {
@@ -31,7 +32,7 @@ export const InputLink: FC<InputLinkProps> = ({ value = 'Not Value' }) => {
 					}}
 				>
 					Copy link
-				</button>
+				</Button>
 			</label>
 		</div>
 	);

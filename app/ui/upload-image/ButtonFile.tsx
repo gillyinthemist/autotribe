@@ -1,4 +1,6 @@
 import type { ChangeEvent, FC, LegacyRef } from 'react';
+import { Button } from '../button';
+
 
 type Props = {
 	disabled?: boolean;
@@ -11,7 +13,7 @@ export const ButtonFile: FC<Props> = (props) => {
 	const { disabled = false, inputRef, onClick, onChange } = props;
 
 	return (
-		<button
+		<Button
 			type='button'
 			className='normal-case bg-blue-500 text-gray-50 font-medium py-2.5 px-4 rounded-lg shadow-xl shadow-blue-500/50'
 			onClick={onClick}
@@ -27,6 +29,6 @@ export const ButtonFile: FC<Props> = (props) => {
 				hidden
 				onChange={onChange}
 			/>
-		</button>
+		</Button>
 	);
 };

@@ -20,10 +20,9 @@ export default async function Page() {
       />
       <div className="flex flex-col items-center h-screen">
       <ToastContainer
-				position='bottom-center'
+				position='bottom-right'
 				autoClose={5000}
 				limit={2}
-				hideProgressBar
 				newestOnTop={false}
 				closeOnClick
 				rtl={false}

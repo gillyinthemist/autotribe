@@ -20,24 +20,24 @@ import {
 //I shouldn't use an any here but I don't want to make a type for the useUpload hook right now..
 export default function UploadImage({u} : any) {
   return (
-    <div>
+    <div className='w-full'>
       {!u.isFetching && (
         <div
           {...u.getRootProps({ className: 'dropzone' })}
-          className="h-[469px] w-full rounded-xl bg-slate-50 p-8 shadow-none sm:w-[402px] sm:bg-white sm:shadow-lg sm:shadow-gray-200/80"
+          className="rounded-xl bg-mag w-full p-5 shadow-none"
         >
-          <div className="flex h-full w-full flex-col items-center justify-evenly gap-6">
+          <div className="flex flex-col items-center gap-3">
             {u.isSuccess && (
               <i className="fa-sharp fa-solid fa-circle-check text-4xl text-green-600"></i>
             )}
 
-            <h2 className="text-center text-xl font-semibold text-gray-600">
-              {u.isSuccess ? 'Uploaded Successfully!' : 'Upload your image'}
+            <h2 className="text-center text-xl font-semibold text-raisin">
+              {u.isSuccess ? 'Uploaded Successfully!' : 'Upload an image (optional)'}
             </h2>
 
             {!u.isSuccess && (
-              <p className="text-center text-xs font-medium text-gray-500 sm:text-sm">
-                File should be Jpeg, Png, Gif
+              <p className="text-center text-sm font-medium text-grey">
+                Accepted formats: jpg, png, gif
               </p>
             )}
 

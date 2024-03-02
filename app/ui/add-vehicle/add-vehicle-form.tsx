@@ -42,7 +42,7 @@ export default function Form() {
 
       <UploadImage u={u}/>
       
-      <div className="self-center">
+      <div className="self-center mt-5">
         <Button type="submit">Add Vehicle</Button>
       </div>
 
