@@ -5,12 +5,17 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "scontent.cdninstagram.com",
+        hostname: "res.cloudinary.com",
         port: "",
       },
       {
         protocol: "https",
         hostname: "cdn2.vdicheck.com",
+        port: "",
+      },
+      {
+        protocol: "https",
+        hostname: "scontent.cdninstagram.com",
         port: "",
       },
 
@@ -19,3 +24,4 @@ const nextConfig = {
 };
 
 export default nextConfig;
+
