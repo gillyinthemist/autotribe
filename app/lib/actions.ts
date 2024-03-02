@@ -53,7 +53,16 @@ export async function createVehicle(formData: FormData) {
       error: 'Error occured, Please try again',
     };
   }
-
   revalidatePath('/garage');
   redirect('/garage');
+}
+
+export async function deleteVehicle(id: string) {
+  try {
+    await sql`DELETE FROM vehicles WHERE id = ${id}`;
+    revalidatePath('/garage');
+    return { message: 'Deleted Car.' };
+  } catch (error) {
+    return { message: 'Database Error: Failed to Delete Invoice.' };
+  }
 }

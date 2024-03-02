@@ -3,7 +3,6 @@ import { VehicleDetails } from '../../lib/definitions';
 import { numberPlate } from '../fonts';
 import { fetchTaxMot } from '@/app/lib/data';
 
-
 export default async function VehicleOverview({
   vehicle,
 }: {
@@ -31,7 +30,8 @@ export default async function VehicleOverview({
         <Image
           alt="car"
           src={vehicle?.image || ''}
-          fill={true}
+          height={300}
+          width={300}
           className="h-full w-full object-cover object-left"
         />
       </div>
