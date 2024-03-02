@@ -23,7 +23,7 @@ export const Dropzone: FC<DropzoneProps> = ({ isActive = false, onInputProps }) 
 
 		
 
-			<p className={c('text-xs sm:text-sm font-medium text-center', isActive ? 'text-pink-400' : 'text-gray-400')}>
+			<p className={c('text-xs sm:text-sm font-medium text-center', isActive ? 'text-raisin' : 'text-grey')}>
 				Drag & Drop your image here
 			</p>
 		</div>
