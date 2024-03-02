@@ -1,9 +1,8 @@
 'use client';
 import { useDebouncedCallback } from 'use-debounce';
 import { useSearchParams, usePathname, useRouter } from 'next/navigation';
-import { Button } from '../button';
 import clsx from 'clsx';
-import { useState } from 'react';
+
 import { numberPlate } from '../fonts';
 
 export default function EnterReg({className} : {className: string | undefined} ) {
@@ -33,6 +32,7 @@ export default function EnterReg({className} : {className: string | undefined} )
         name="vrm"
         className={clsx(`${numberPlate.className} w-full rounded-lg active bg-yellow-400 focus:outline-none md:max-w-xl p-1 text-center text-7xl uppercase text-black`, className)}
         type="text"
+        autoComplete='off'
         onChange={e => handleReg(e.target.value)}
         placeholder="Enter Reg"/>
   );
