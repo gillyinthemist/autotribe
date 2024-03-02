@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import NavLinks from '@/app/ui/dashboard/nav-links';
+import NavLinks from '@/app/ui/navigation/nav-links';
 import Logo from '@/app/ui/autotribe-logo';
 import { PowerIcon } from '@heroicons/react/24/outline';
 import { fetchUserProfileById } from '@/app/lib/data';

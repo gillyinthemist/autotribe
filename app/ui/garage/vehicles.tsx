@@ -12,7 +12,7 @@ export default async function Vehicles({ filterBy }: { filterBy: string }) {
           <Link
           className="w-[300px]"
             key={vehicle.id}
-            href={`/dashboard/garage/${vehicle.id}/details`}
+            href={`garage/${vehicle.id}/details`}
           >
             <Card make={vehicle.make} model={vehicle.model} image={vehicle.image} />
           </Link>

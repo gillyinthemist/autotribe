@@ -1,7 +1,7 @@
 import Vehicles from '@/app/ui/garage/vehicles';
-import FilterButtons from '@/app/ui/garage/filter-buttons';
-import AddButtons from '@/app/ui/garage/add-buttons';
-import Breadcrumbs from '@/app/ui/garage/breadcrumbs';
+import FilterButtons from '@/app/ui/query/filter-buttons';
+import AddButtons from '@/app/ui/navigation/add-buttons';
+import Breadcrumbs from '@/app/ui/navigation/breadcrumbs';
 import { Metadata } from 'next';
 
 
@@ -23,7 +23,7 @@ export default async function Page({
       {/* <AddButtons/> */}
       <Breadcrumbs
         breadcrumbs={[
-          { label: 'Garage', href: '/dashboard/garage', active:true },
+          { label: 'Garage', href: 'garage', active:true },
         ]}
       />
       <div className="flex flex-col items-center gap-10">

@@ -1,7 +1,7 @@
 import { validateVRM } from '@/app/lib/data';
 import Form from '@/app/ui/add-vehicle/add-vehicle-form';
-import EnterReg from '@/app/ui/add-vehicle/enter-reg';
-import Breadcrumbs from '@/app/ui/garage/breadcrumbs';
+import EnterReg from '@/app/ui/query/enter-reg';
+import Breadcrumbs from '@/app/ui/navigation/breadcrumbs';
 import { Metadata } from 'next';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -30,10 +30,10 @@ export default async function Page({
     <main>
       <Breadcrumbs
         breadcrumbs={[
-          { label: 'Garage', href: '/dashboard/garage' },
+          { label: 'Garage', href: 'garage' },
           {
             label: 'Add Vehicle',
-            href: `/dashboard/garage/add-vehicle`,
+            href: `garage/add-vehicle`,
             active: true,
           },
         ]}

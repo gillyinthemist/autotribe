@@ -1,5 +1,5 @@
 import { fetchVehicleById } from '@/app/lib/data';
-import Breadcrumbs from '@/app/ui/garage/breadcrumbs';
+import Breadcrumbs from '@/app/ui/navigation/breadcrumbs';
 import VehicleDiary from '@/app/ui/vehicle-detail/vehicle-diary';
 import VehicleOverview from '@/app/ui/vehicle-detail/vehicle-overview';
 import { Metadata } from 'next';
@@ -20,10 +20,10 @@ export default async function Page({ params }: { params: { id: string } }) {
     <main>
       <Breadcrumbs
         breadcrumbs={[
-          { label: 'Garage', href: '/dashboard/garage' },
+          { label: 'Garage', href: 'garage' },
           {
             label: 'Details',
-            href: `/dashboard/garage/${id}/details`,
+            href: `/garage/${id}/details`,
             active: true,
           },
         ]}

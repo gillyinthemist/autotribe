@@ -63,8 +63,8 @@ export async function createVehicle(prevState: State, formData: FormData){
 
   
 
-  revalidatePath('/dashboard/garage');
-  redirect('/dashboard/garage');
+  revalidatePath('/garage');
+  redirect('/garage');
   
   
 }
