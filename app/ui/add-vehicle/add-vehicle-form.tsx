@@ -6,9 +6,13 @@ import { numberPlate } from '../fonts';
 import { useState } from 'react';
 import { useUpload } from '@/app/hooks/use-upload';
 import UploadImage from '../upload-image/upload-image';
+import EnterReg from './enter-reg';
+import { useSearchParams } from 'next/navigation';
 
 
 export default function Form() {
+  const searchParams = useSearchParams();
+  const vrm = searchParams.get('vrm') || '';
   const u = useUpload();
   const initialState = { error: null };
   const [state, dispatch] = useFormState(createVehicle, initialState);
@@ -21,12 +25,12 @@ export default function Form() {
       <input
         id="vrm"
         name="vrm"
-        className={`${numberPlate.className} w-full rounded-lg bg-yellow-400 p-1 text-center text-7xl uppercase text-black`}
         type="text"
-        placeholder="Enter Reg"
+        value={vrm}
+        hidden
+        readOnly
       />
-      <div>{state.error && <p>{state.error}</p>}</div>
-
+      
       {u.image?.secure_url! && (
         <input
           id="image"
@@ -42,6 +46,7 @@ export default function Form() {
 
       <UploadImage u={u}/>
       
+      <div>{state.error && <p>{state.error}</p>}</div>
       <div className="self-center mt-5">
         <Button type="submit">Add Vehicle</Button>
       </div>

@@ -27,6 +27,18 @@ export async function fetchOwnedVehicles (ownerId:string, filterBy:string) {
     }
 }
 
+export async function validateVRM(vrm:string) {
+  try {
+    //query API to see if its a valid reg using UKVD ValuationCanPrice endpoint as its the shortest response
+    const res = await fetch(`https://uk1.ukvehicledata.co.uk/api/datapackage/ValuationCanPrice?v=2&api_nullitems=1&auth_apikey=90c37424-9799-4426-a462-c6c71b0d2c32&user_tag=&key_VRM=${vrm}`);
+    const resJson = await res.json();
+    //return response
+    return {status: resJson.Response?.StatusCode, message: resJson.Response?.StatusMessage}
+} catch (error) {
+  console.error('Failed to validate VRM:',error)
+}
+
+}
 
 export async function fetchVehicleById(id:string){
   noStore();
