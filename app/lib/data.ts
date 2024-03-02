@@ -25,13 +25,32 @@ export async function fetchOwnedVehicles (ownerId:string, filterBy:string) {
     }
 }
 
-export async function validateVRM(vrm:string) {
+export async function fetchVehicleByReg(vrm:string) {
   try {
-    //query API to see if its a valid reg using UKVD ValuationCanPrice endpoint as its the shortest response
-    const res = await fetch(`https://uk1.ukvehicledata.co.uk/api/datapackage/ValuationCanPrice?v=2&api_nullitems=1&auth_apikey=90c37424-9799-4426-a462-c6c71b0d2c32&user_tag=&key_VRM=${vrm}`);
+    //query API to see if its a valid reg using UKVD API endpoint and get response
+    const res = await fetch(`https://uk1.ukvehicledata.co.uk/api/datapackage/VehicleData?v=2&api_nullitems=1&auth_apikey=90c37424-9799-4426-a462-c6c71b0d2c32&user_tag=&key_VRM=${vrm}`);
     const resJson = await res.json();
-    //return response
-    return {status: resJson.Response?.StatusCode, message: resJson.Response?.StatusMessage}
+    
+    let details = {}
+    if (resJson.Response?.StatusCode === 'Success'){
+
+      //Deconstruct response and make an object with result
+      const { Make, Model, Colour, YearOfManufacture } = resJson.Response.DataItems?.VehicleRegistration;
+      details = {
+        make: Make,
+        model: Model,
+        colour: Colour,
+        year: YearOfManufacture
+      }
+    }
+    
+    //return result and spread details in
+    const result = {
+      status: resJson.Response?.StatusCode,
+      message: resJson.Response?.StatusMessage,
+      ...details
+    }
+    return result;
 } catch (error) {
   console.error('Failed to validate VRM:',error)
 }

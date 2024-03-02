@@ -1,4 +1,4 @@
-import { validateVRM } from '@/app/lib/data';
+import { fetchVehicleByReg } from '@/app/lib/data';
 import Form from '@/app/ui/add-vehicle/add-vehicle-form';
 import EnterReg from '@/app/ui/query/enter-reg';
 import Breadcrumbs from '@/app/ui/navigation/breadcrumbs';
@@ -19,11 +19,11 @@ export default async function Page({
   };
 }) {
   const vrm = searchParams?.vrm || '';
-  let validateVrm = null;
+  let newVehicle = null;
   if (vrm !== '') {
-    validateVrm = await validateVRM(vrm);
+    newVehicle = await fetchVehicleByReg(vrm);
   } else {
-    validateVrm = null;
+    newVehicle = null;
   }
 
   return (
@@ -54,18 +54,18 @@ export default async function Page({
 
         <EnterReg
           className={clsx(
-            { 'border-4 border-green-600': validateVrm?.status === 'Success' },
-            { 'border-4 border-red-600': validateVrm && validateVrm.status !== 'Success' },
+            { 'border-4 border-green-600': newVehicle?.status === 'Success' },
+            { 'border-4 border-red-600': newVehicle && newVehicle.status !== 'Success' },
           )}
         />
 
-        {validateVrm &&
-          (validateVrm.status === 'Success' ? (
+        {newVehicle &&
+          (newVehicle.status === 'Success' ? (
             <>
-              <Form />
+              <Form newVehicle={newVehicle} />
             </>
           ) : (
-            <p>{validateVrm.message}</p>
+            <p>{newVehicle.message}</p>
           ))}
       </div>
     </main>

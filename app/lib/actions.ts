@@ -20,51 +20,40 @@ export type State = {
   error?: string | null;
 };
 
-export async function createVehicle(prevState: State, formData: FormData){
-  const vrm = formData.get('vrm')?.toString().toUpperCase();
-  const current = formData.get('current');
-  const desc = formData.get('description');
-  let image = formData.get('image');
+export async function createVehicle(formData: FormData) {
+  const vehicle = Object.fromEntries(formData.entries());
+  vehicle.vrm = vehicle.vrm.toString().toUpperCase();
+  console.log(vehicle);
 
-  console.log(`Data from form:, REG: ${vrm}, current: ${current}, desc: ${desc}, image: ${image}`)
-  //Hard coded for dev:
-  const ownerId = "410544b2-4001-4271-9855-fec4b6a6442a";
+  const ownerId = '410544b2-4001-4271-9855-fec4b6a6442a';
 
-  console.log("Retrieiving data from UKVD API for:", vrm, '...');
   try {
-    //First query API
-    const res = await fetch(`https://uk1.ukvehicledata.co.uk/api/datapackage/VehicleData?v=2&api_nullitems=1&auth_apikey=90c37424-9799-4426-a462-c6c71b0d2c32&user_tag=&key_VRM=${vrm}`);
-    const resJson = await res.json();
+    if (typeof vehicle.image !== 'string' || vehicle.image === '') {
+      console.log(
+        'No image uploaded so fetching from UKVD API for:',
+        vehicle.vrm,
+        '...',
+      );
 
-    //If not successful, return error
-    if(resJson.Response?.StatusCode !== "Success") return {error: resJson.Response.StatusMessage}
-    //Otherwise, lets try to add to DB
-    else {
-      if(image === '') {
-        console.log("No image uploaded so fetching from UKVD API for:", vrm, '...');
-        const resImage = await fetch(`https://uk1.ukvehicledata.co.uk/api/datapackage/VehicleImageData?v=2&api_nullitems=1&auth_apikey=90c37424-9799-4426-a462-c6c71b0d2c32&user_tag=&key_VRM=${vrm}`);
-        const resImageJson = await resImage.json();
-        image = resImageJson.Response.DataItems.VehicleImages.ImageDetailsList[0].ImageUrl;
-        console.log("Image URL successfully retrieved:", image);
-      }
-      const { Make, Model, Colour, YearOfManufacture } = resJson.Response.DataItems.VehicleRegistration;
-      await sql`INSERT INTO vehicles (owner_id, vrm, make, model, colour, image, year, description, current)
-      VALUES (${ownerId}, ${vrm}, ${Make}, ${Model}, ${Colour}, ${image as string}, ${YearOfManufacture}, ${desc as string}, ${current as string})
-  `;
-      console.log('Successfully added to DB: ', vrm, YearOfManufacture, Make, Model, Colour);
+      const resImage = await fetch(
+        `https://uk1.ukvehicledata.co.uk/api/datapackage/VehicleImageData?v=2&api_nullitems=1&auth_apikey=90c37424-9799-4426-a462-c6c71b0d2c32&user_tag=&key_VRM=${vehicle.vrm}`,
+      );
+      const resImageJson = await resImage.json();
+      vehicle.image =
+        resImageJson.Response.DataItems.VehicleImages.ImageDetailsList[0].ImageUrl;
+      console.log('Image URL successfully retrieved:', vehicle.image);
     }
-
+    await sql`INSERT INTO vehicles (owner_id, vrm, make, model, colour, image, year, description, current)
+      VALUES (${ownerId}, ${vehicle.vrm}, ${vehicle.make as string}, ${vehicle.model as string}, ${vehicle.colour as string}, ${vehicle.image as string}, ${vehicle.year as string}, ${vehicle.description as string}, ${vehicle.current as string})
+   `;
+    console.log('Successfully added to DB: ', vehicle.vrm);
   } catch (error) {
     console.error(error);
     return {
-      error: "Error occured, Please try again",
+      error: 'Error occured, Please try again',
     };
   }
 
-  
-
   revalidatePath('/garage');
   redirect('/garage');
-  
-  
 }
