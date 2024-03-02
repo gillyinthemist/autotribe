@@ -7,7 +7,9 @@ export default async function Vehicles({ filterBy }: { filterBy: string }) {
   const vehicles = await fetchOwnedVehicles(ownerId, filterBy);
   return (
     <div className="flex flex-wrap gap-10 justify-center">
-      {vehicles?.map((vehicle) => {
+      {vehicles?.length === 0 && <h2>No vehicles here...</h2>}
+
+      {vehicles && vehicles.map((vehicle) => {
         return (
           <Link
           className="w-[300px]"
