@@ -11,13 +11,12 @@ export default async function Vehicles({ filterBy }: { filterBy: string }) {
 
       {vehicles && vehicles.map((vehicle) => {
         return (
-          <Link
-          className="w-[300px]"
-            key={vehicle.id}
-            href={`garage/${vehicle.id}/details`}
-          >
-            <Card make={vehicle.make} model={vehicle.model} image={vehicle.image} />
-          </Link>
+          
+            
+            
+          
+            <Card key={vehicle.id} vehicle={vehicle} />
+          
         );
       })}
     </div>

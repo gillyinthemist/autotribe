@@ -30,7 +30,7 @@ export default async function Page({
     <main>
       <Breadcrumbs
         breadcrumbs={[
-          { label: 'Garage', href: 'garage' },
+          { label: 'Garage', href: '/garage' },
           {
             label: 'Add Vehicle',
             href: `garage/add-vehicle`,

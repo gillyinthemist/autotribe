@@ -23,7 +23,7 @@ export default async function Page({
       {/* <AddButtons/> */}
       <Breadcrumbs
         breadcrumbs={[
-          { label: 'Garage', href: 'garage', active:true },
+          { label: 'Garage', href: '/garage', active:true },
         ]}
       />
       <div className="flex flex-col items-center gap-10">

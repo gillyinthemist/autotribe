@@ -24,7 +24,7 @@ export default async function SideNav() {
       </Link>
 
       <div className="flex grow flex-row justify-between space-x-2 md:flex-col md:space-x-0 md:space-y-2">
-        <div className="hidden h-96 w-full flex-col p-6 items-center gap-5 rounded-md bg-brown md:flex">
+        <div className="hidden w-full flex-col p-6 items-center gap-5 rounded-md bg-brown md:flex">
           <div className="overflow-hidden rounded-full">
             <Image
               alt="user"
@@ -32,9 +32,10 @@ export default async function SideNav() {
               height={100}
               width={100}
               className="h-full w-full"
+              priority
             />
           </div>
-          <p>{user?.first_name} {user?.first_name}</p>
+          <p>{user?.first_name} {user?.last_name}</p>
           <p><strong>{user?.username}</strong></p>
         </div>
         <NavLinks />
