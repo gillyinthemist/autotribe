@@ -4,7 +4,7 @@ import { useFormState } from 'react-dom';
 import { Button } from '../button';
 import { createVehicle } from '@/app/lib/actions';
 import { numberPlate } from '../fonts';
-import { CldUploadButton, CloudinaryUploadWidgetInfo } from 'next-cloudinary';
+import { CldUploadWidget, CloudinaryUploadWidgetInfo } from 'next-cloudinary';
 import { useState } from 'react';
 
 export default function Form() {
@@ -25,10 +25,20 @@ export default function Form() {
         placeholder="Enter Reg"
       />
       <div>{state.error && <p>{state.error}</p>}</div>
-      <CldUploadButton
+      <CldUploadWidget
         uploadPreset="srzwfbhg"
-        onSuccess={(res) => setImageURL((res.info as CloudinaryUploadWidgetInfo).secure_url)}
-      />
+        onSuccess={(res) =>
+          setImageURL((res.info as CloudinaryUploadWidgetInfo).secure_url)
+        }
+      >
+        {({ open }) => {
+          return (
+            <Button type="button" onClick={() => open()}>
+              Upload
+            </Button>
+          );
+        }}
+      </CldUploadWidget>
       {imageURL && (
         <input
           id="image"
@@ -45,5 +55,7 @@ export default function Form() {
         <Button type="submit">Add Vehicle</Button>
       </div>
     </form>
+
+    
   );
 }
