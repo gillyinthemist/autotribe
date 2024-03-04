@@ -1,15 +1,15 @@
 'use client';
 import { PlusCircleIcon } from '@heroicons/react/24/outline';
 
-import { useState,useRef } from 'react';
+import { useState, useRef } from 'react';
 import clsx from 'clsx';
 import { createEntry } from '@/app/lib/actions';
 
-export default function AddEntry({ id }: {id: string}) {
+export default function AddEntry({ id }: { id: string }) {
   const [showForm, setShowForm] = useState(false);
   const [complete, setComplete] = useState(false);
 
-  const formRef =  useRef<HTMLFormElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
 
   function handleAdd() {
     setShowForm(!showForm);
@@ -19,8 +19,8 @@ export default function AddEntry({ id }: {id: string}) {
     setComplete(!complete);
   }
 
-  function submit(formData:FormData) {
-    createEntry(formData)
+  function submit(formData: FormData) {
+    createEntry(formData);
     //reset form and bring back the add button
     setShowForm(!showForm);
     setComplete(false);
@@ -28,7 +28,7 @@ export default function AddEntry({ id }: {id: string}) {
   }
 
   return (
-    <div className="flex flex-col items-center border-mag border-2 rounded-lg p-3">
+    <div className="flex flex-col items-center rounded-lg border-2 border-mag p-3">
       {!showForm && (
         <PlusCircleIcon
           height={40}
@@ -38,9 +38,13 @@ export default function AddEntry({ id }: {id: string}) {
         />
       )}
       {showForm && (
-        <form action={submit} ref={formRef} className="flex w-full flex-row items-center justify-between gap-2 md:flex-row">
+        <form
+          action={submit}
+          ref={formRef}
+          className="flex w-full flex-row items-center justify-between gap-2 md:flex-row"
+        >
           <div className="flex-grow">
-          <input
+            <input
               type="text"
               id="vehicle_id"
               name="vehicle_id"

@@ -1,5 +1,3 @@
 export default async function Page() {
-  return (
-    <p>Settings (not yet implemented)</p>
-  );
+  return <p>Settings (not yet implemented)</p>;
 }

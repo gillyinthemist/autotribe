@@ -2,7 +2,6 @@ const { db } = require('@vercel/postgres');
 const { vehicles, users, entries } = require('../app/lib/placeholder-data.js');
 const bcrypt = require('bcrypt');
 
-
 async function seedVehicles(client) {
   try {
     await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
@@ -54,7 +53,6 @@ async function seedDiary(client) {
 
     console.log(`Created "entries" table`);
 
-
     // Insert data into the "entries" table
     const insertedEntries = await Promise.all(
       entries.map(async (entry) => {
@@ -70,7 +68,7 @@ async function seedDiary(client) {
 
     return {
       createTable,
-      entries: insertedEntries
+      entries: insertedEntries,
     };
   } catch (error) {
     console.error('Error seeding entries:', error);

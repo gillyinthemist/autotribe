@@ -1,5 +1,5 @@
 import '@/app/ui/global.css';
-import type { Metadata } from "next";
+import type { Metadata } from 'next';
 import { openSans } from './ui/fonts';
 
 export const metadata: Metadata = {

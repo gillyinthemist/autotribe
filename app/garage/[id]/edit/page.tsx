@@ -43,7 +43,7 @@ export default async function Page({ params }: { params: { id: string } }) {
           pauseOnHover
           theme="colored"
         />
-        <EditVehicle vehicle={vehicle}/>
+        <EditVehicle vehicle={vehicle} />
       </div>
     </main>
   );

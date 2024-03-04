@@ -11,9 +11,9 @@ export default function DisplayEntry({ entry }: any) {
   const displayDate = date.toLocaleDateString();
 
   const deleteEntryWithId = deleteEntry.bind(null, entry.id, entry.vehicle_id);
-  
+
   return (
-    <div className="flex w-full justify-between items-center gap-1 border-mag border-2 rounded-lg p-3">
+    <div className="flex w-full items-center justify-between gap-1 rounded-lg border-2 border-mag p-3">
       <p className="flex-grow ">{entry.entry}</p>
       <p className="">{entry.complete ? 'Carried out:' : 'Added:'}</p>
       <p className="px-3">{`${displayDate}`}</p>

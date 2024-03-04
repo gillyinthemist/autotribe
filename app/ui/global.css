@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 :root {
-  --mag : #F7F0F5;
-  --dun : #DECBB7;
-  --grey : #8F857D;
-  --brown : #5C5552;
-  --raisin:#2F2523;
+  --mag: #f7f0f5;
+  --dun: #decbb7;
+  --grey: #8f857d;
+  --brown: #5c5552;
+  --raisin: #2f2523;
   --night: #161412;
 }
 
@@ -23,7 +23,6 @@ body {
   color: var(--mag);
   background-color: var(--night);
 }
-
 
 button {
   padding: 0.5rem;

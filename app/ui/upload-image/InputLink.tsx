@@ -5,35 +5,35 @@ import type { FC } from 'react';
 import { Button } from '../button';
 
 type InputLinkProps = {
-	value: string;
+  value: string;
 };
 
 export const InputLink: FC<InputLinkProps> = ({ value = 'Not Value' }) => {
-	return (
-		<div className='w-full'>
-			<label className='relative'>
-				<input
-					type='text'
-					disabled
-					value={value}
-					readOnly
-					className='w-full h-10 text-sm truncate pr-24 bg-white text-night pl-2 border border-raisin rounded-lg overflow-hidden cursor-not-allowed'
-				/>
+  return (
+    <div className="w-full">
+      <label className="relative">
+        <input
+          type="text"
+          disabled
+          value={value}
+          readOnly
+          className="h-10 w-full cursor-not-allowed overflow-hidden truncate rounded-lg border border-raisin bg-white pl-2 pr-24 text-sm text-night"
+        />
 
-				<Button
-					type='button'
-					title='Press to copy'
-					className='absolute top-1/2 -translate-y-1/2 block right-0'
-					onClick={() => {
-						const isCopy = copy(value || '');
-						if (isCopy) {
-							toast.success('Copy to clipboard', { theme: 'light' });
-						}
-					}}
-				>
-					Copy link
-				</Button>
-			</label>
-		</div>
-	);
+        <Button
+          type="button"
+          title="Press to copy"
+          className="absolute right-0 top-1/2 block -translate-y-1/2"
+          onClick={() => {
+            const isCopy = copy(value || '');
+            if (isCopy) {
+              toast.success('Copy to clipboard', { theme: 'light' });
+            }
+          }}
+        >
+          Copy link
+        </Button>
+      </label>
+    </div>
+  );
 };

@@ -10,7 +10,6 @@ export default async function VehicleOverview({
 }: {
   vehicle: VehicleDetails;
 }) {
-
   let motAndTax = {
     VehicleHasCurrentMot: false,
     DaysUntilNextMotIsDue: 0,
@@ -20,7 +19,7 @@ export default async function VehicleOverview({
       VedExpiryDate: null,
       VedDaysRemaining: null,
     },
-    error: false
+    error: false,
   };
 
   if (vehicle.current) {
@@ -38,13 +37,11 @@ export default async function VehicleOverview({
           className="h-full w-full object-cover"
         />
         <Link href={`/garage/${vehicle.id}/edit`}>
-            <PencilIcon className="absolute right-2 top-2 z-40 h-8 w-8 text-raisin drop-shadow-lg hover:text-dun" />
+          <PencilIcon className="absolute right-2 top-2 z-40 h-8 w-8 text-raisin drop-shadow-lg hover:text-dun" />
         </Link>
       </div>
       <div className="flex items-center justify-center rounded-lg bg-yellow-400 p-1">
-        <p
-          className={`${numberPlate.className} text-7xl uppercase text-black`}
-        >
+        <p className={`${numberPlate.className} text-7xl uppercase text-black`}>
           {vehicle?.vrm}
         </p>
       </div>
@@ -69,18 +66,26 @@ export default async function VehicleOverview({
         </p>
       </div>
       {vehicle.current && !motAndTax.error && (
-        <div className="flex flex-row gap-2 w-full">
-          <div className="flex flex-col basis-1/2 gap-2 rounded-xl bg-grey p-5 text-center">
+        <div className="flex w-full flex-row gap-2">
+          <div className="flex basis-1/2 flex-col gap-2 rounded-xl bg-grey p-5 text-center">
             <p>
               <strong>MOT Status</strong>
             </p>
-            {motAndTax.VehicleHasCurrentMot ? <p>{motAndTax.DaysUntilNextMotIsDue} days remaining</p> : <p>Expired</p>}
+            {motAndTax.VehicleHasCurrentMot ? (
+              <p>{motAndTax.DaysUntilNextMotIsDue} days remaining</p>
+            ) : (
+              <p>Expired</p>
+            )}
           </div>
-          <div className="flex flex-col basis-1/2 gap-2 rounded-xl bg-grey p-5 text-center">
+          <div className="flex basis-1/2 flex-col gap-2 rounded-xl bg-grey p-5 text-center">
             <p>
               <strong>Tax Status</strong>
             </p>
-            {motAndTax.MotVed.VedCurrentlyValid ? <p>{motAndTax.MotVed.VedDaysRemaining} days remaining</p> : <p>SORN</p>}
+            {motAndTax.MotVed.VedCurrentlyValid ? (
+              <p>{motAndTax.MotVed.VedDaysRemaining} days remaining</p>
+            ) : (
+              <p>SORN</p>
+            )}
           </div>
         </div>
       )}

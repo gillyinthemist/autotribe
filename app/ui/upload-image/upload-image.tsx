@@ -1,7 +1,7 @@
 /**
- * 
+ *
  * Modified version of this repo: https://github.com/kevin-sg/nextjs-image-uploader
- * 
+ *
  * MIT License
  * Copyright (c) 2023 KevinSa
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
@@ -18,13 +18,13 @@ import {
 } from '@/app/ui/upload-image';
 
 //I shouldn't use an any here but I don't want to make a type for the useUpload hook right now..
-export default function UploadImage({u} : any) {
+export default function UploadImage({ u }: any) {
   return (
-    <div className='w-full'>
+    <div className="w-full">
       {!u.isFetching && (
         <div
           {...u.getRootProps({ className: 'dropzone' })}
-          className="rounded-xl bg-mag w-full p-5 shadow-none"
+          className="w-full rounded-xl bg-mag p-5 shadow-none"
         >
           <div className="flex flex-col items-center gap-3">
             {u.isSuccess && (
@@ -32,7 +32,9 @@ export default function UploadImage({u} : any) {
             )}
 
             <h2 className="text-center text-lg font-semibold text-raisin">
-              {u.isSuccess ? 'Uploaded Successfully!' : 'Upload an image (optional)'}
+              {u.isSuccess
+                ? 'Uploaded Successfully!'
+                : 'Upload an image (optional)'}
             </h2>
 
             {!u.isSuccess && (

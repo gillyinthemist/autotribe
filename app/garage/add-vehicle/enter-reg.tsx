@@ -5,12 +5,16 @@ import clsx from 'clsx';
 
 import { numberPlate } from '../../ui/fonts';
 
-export default function EnterReg({className} : {className: string | undefined} ) {
+export default function EnterReg({
+  className,
+}: {
+  className: string | undefined;
+}) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
-  
-  const handleReg = useDebouncedCallback((vrm:string) => {
+
+  const handleReg = useDebouncedCallback((vrm: string) => {
     //create an instance of the CURRENT search params
     const params = new URLSearchParams(searchParams);
     //Then add the search parameter as 'vrm' to the instance if exists
@@ -23,16 +27,20 @@ export default function EnterReg({className} : {className: string | undefined} )
     }
     //then replace the route in the URL with the new instance with the new query
     replace(`${pathname}?${params.toString()}`);
-  },300);
+  }, 300);
 
   return (
-      <input
-        id="vrm"
-        name="vrm"
-        className={clsx(`${numberPlate.className} w-full border-4 rounded-lg active bg-yellow-400 focus:outline-none md:max-w-xl p-1 text-center text-7xl uppercase text-black`, className)}
-        type="text"
-        autoComplete='off'
-        onChange={e => handleReg(e.target.value)}
-        placeholder="Enter Reg"/>
+    <input
+      id="vrm"
+      name="vrm"
+      className={clsx(
+        `${numberPlate.className} active w-full rounded-lg border-4 bg-yellow-400 p-1 text-center text-7xl uppercase text-black focus:outline-none md:max-w-xl`,
+        className,
+      )}
+      type="text"
+      autoComplete="off"
+      onChange={(e) => handleReg(e.target.value)}
+      placeholder="Enter Reg"
+    />
   );
 }

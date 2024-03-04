@@ -1,9 +1,7 @@
 import Vehicles from '@/app/garage/vehicles';
 import FilterButtons from '@/app/garage/filter-buttons';
-import AddButtons from '@/app/ui/navigation/add-buttons';
 import Breadcrumbs from '@/app/ui/navigation/breadcrumbs';
 import { Metadata } from 'next';
-
 
 export const metadata: Metadata = {
   title: 'My Garage',
@@ -16,21 +14,17 @@ export default async function Page({
     filter?: string;
   };
 }) {
-  const filter = searchParams?.filter || "";
+  const filter = searchParams?.filter || '';
 
   return (
     <main>
-      {/* <AddButtons/> */}
       <Breadcrumbs
-        breadcrumbs={[
-          { label: 'Garage', href: '/garage', active:true },
-        ]}
+        breadcrumbs={[{ label: 'Garage', href: '/garage', active: true }]}
       />
       <div className="flex flex-col items-center gap-10">
-        <FilterButtons/>
-        <Vehicles filterBy={filter}/>
+        <FilterButtons />
+        <Vehicles filterBy={filter} />
       </div>
-      
     </main>
   );
 }

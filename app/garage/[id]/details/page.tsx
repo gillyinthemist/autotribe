@@ -9,7 +9,6 @@ export const metadata: Metadata = {
   title: 'Details',
 };
 
-
 export default async function Page({ params }: { params: { id: string } }) {
   const id = params.id;
   const vehicle = await fetchVehicleById(id);
@@ -36,7 +35,7 @@ export default async function Page({ params }: { params: { id: string } }) {
       />
       <div className="flex w-full flex-col flex-wrap gap-10 md:flex-row">
         <VehicleOverview vehicle={vehicle} />
-        <VehicleDiary id={vehicle.id} entries={entries}/>
+        <VehicleDiary id={vehicle.id} entries={entries} />
       </div>
     </main>
   );

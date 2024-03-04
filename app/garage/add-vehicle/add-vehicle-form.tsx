@@ -31,7 +31,7 @@ export default function Form({ newVehicle }: any) {
 
       <div className="flex w-full flex-col items-center gap-4 rounded-lg bg-mag p-6">
         <h2 className="text-lg font-semibold text-night">Vehicle Details:</h2>
-        <div className="flex flex-row gap-0 flex-wrap items-center justify-center">
+        <div className="flex flex-row flex-wrap items-center justify-center gap-0">
           <label className="font-semibold text-night">Make:</label>
           <input
             type="text"
@@ -40,7 +40,7 @@ export default function Form({ newVehicle }: any) {
             value={newVehicle.make}
             readOnly
           />
-          <p className="text-night pl-1 pr-2">{newVehicle.make}</p>
+          <p className="pl-1 pr-2 text-night">{newVehicle.make}</p>
           <label className="font-semibold text-night">Model:</label>
           <input
             type="text"
@@ -49,7 +49,7 @@ export default function Form({ newVehicle }: any) {
             value={newVehicle.model}
             readOnly
           />
-          <p className="text-night pl-1 pr-2">{newVehicle.model}</p>
+          <p className="pl-1 pr-2 text-night">{newVehicle.model}</p>
 
           <label className="font-semibold text-night">Colour:</label>
           <input
@@ -59,7 +59,7 @@ export default function Form({ newVehicle }: any) {
             value={newVehicle.colour}
             readOnly
           />
-          <p className="text-night pl-1 pr-2">{newVehicle.colour}</p>
+          <p className="pl-1 pr-2 text-night">{newVehicle.colour}</p>
 
           <label className="font-semibold text-night">Year:</label>
           <input
@@ -69,7 +69,7 @@ export default function Form({ newVehicle }: any) {
             value={newVehicle.year}
             readOnly
           />
-          <p className="text-night pl-1 pr-2">{newVehicle.year}</p>
+          <p className="pl-1 pr-2 text-night">{newVehicle.year}</p>
         </div>
       </div>
 

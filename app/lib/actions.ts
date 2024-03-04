@@ -5,7 +5,6 @@ import { redirect } from 'next/navigation';
 import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
 
-
 export async function authenticate(
   prevState: string | undefined,
   formData: FormData,
@@ -24,8 +23,6 @@ export async function authenticate(
     throw error;
   }
 }
-
-
 
 export async function createVehicle(formData: FormData) {
   const vehicle = Object.fromEntries(formData.entries());
@@ -64,9 +61,9 @@ export async function createVehicle(formData: FormData) {
   redirect('/garage');
 }
 
-export async function createEntry(formData: FormData){
+export async function createEntry(formData: FormData) {
   const entry = Object.fromEntries(formData.entries());
-  const added = new Date(Date.now()).toISOString()
+  const added = new Date(Date.now()).toISOString();
 
   if (!entry.complete) entry.complete = 'false';
 
@@ -75,27 +72,27 @@ export async function createEntry(formData: FormData){
     VALUES(${entry.vehicle_id as string}, ${added}, ${entry.date_completed as string}, ${entry.entry as string}, ${entry.complete as string})
     `;
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return { message: 'Database Error' };
   }
 
-   revalidatePath(`/garage/${entry.vehicle_id}/details`);
+  revalidatePath(`/garage/${entry.vehicle_id}/details`);
 }
 
-export async function updateVehicle(id:string, formData:FormData,){
+export async function updateVehicle(id: string, formData: FormData) {
   const vehicle = Object.fromEntries(formData.entries());
   console.log(vehicle);
 
   //If image not updated, then dont pass it into SQL
-  if (typeof vehicle.image !== 'string' || vehicle.image === ''){
-    console.log("updating without image..");
+  if (typeof vehicle.image !== 'string' || vehicle.image === '') {
+    console.log('updating without image..');
     try {
       await sql`
           UPDATE vehicles SET vrm = ${vehicle.vrm as string}, make = ${vehicle.make as string}, model=${vehicle.model as string}, colour=${vehicle.colour as string}, year=${vehicle.year as string}, description=${vehicle.description as string}, current=${vehicle.current as string}
           WHERE id = ${id}
         `;
     } catch (error) {
-      console.log(error)
+      console.log(error);
       return { message: 'Database Error: Failed to Update vehicle.' };
     }
   } else {
@@ -106,7 +103,7 @@ export async function updateVehicle(id:string, formData:FormData,){
       WHERE id = ${id}
         `;
     } catch (error) {
-      console.log(error)
+      console.log(error);
       return { message: 'Database Error: Failed to Update vehicle.' };
     }
   }
@@ -114,7 +111,6 @@ export async function updateVehicle(id:string, formData:FormData,){
   revalidatePath(`/garage/${id}/details`);
   revalidatePath('/garage');
   redirect(`/garage/${id}/details`);
-
 }
 
 export async function deleteVehicle(id: string) {
@@ -126,7 +122,6 @@ export async function deleteVehicle(id: string) {
     return { message: 'Database Error: Failed to Delete Vehicle.' };
   }
 }
-
 
 export async function deleteEntry(entry_id: string, vehicle_id: string) {
   try {
