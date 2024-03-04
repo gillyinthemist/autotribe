@@ -1,10 +1,10 @@
-import EnterReg from '@/app/ui/query/enter-reg';
+import EnterReg from '@/app/garage/add-vehicle/enter-reg';
 import Breadcrumbs from '@/app/ui/navigation/breadcrumbs';
 import { Metadata } from 'next';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import clsx from 'clsx';
-import EditVehicle from '@/app/ui/vehicle/edit-vehicle-form';
+import EditVehicle from '@/app/garage/[id]/edit/edit-vehicle-form';
 import { fetchVehicleById } from '@/app/lib/data';
 
 export const metadata: Metadata = {

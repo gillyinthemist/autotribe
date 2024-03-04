@@ -1,10 +1,10 @@
 'use client';
 import { useFormState } from 'react-dom';
-import { Button } from '../button';
+import { Button } from '../../ui/button';
 import { createVehicle } from '@/app/lib/actions';
 import { KeyIcon, ClockIcon } from '@heroicons/react/24/outline';
 import { useUpload } from '@/app/hooks/use-upload';
-import UploadImage from '../upload-image/upload-image';
+import UploadImage from '../../ui/upload-image/upload-image';
 import { useSearchParams } from 'next/navigation';
 
 export default function Form({ newVehicle }: any) {

@@ -1,4 +1,4 @@
-import { Card } from '@/app/ui/garage/card';
+import { Card } from '@/app/garage/card';
 import { fetchOwnedVehicles } from '@/app/lib/data';
 import Link from 'next/link';
 

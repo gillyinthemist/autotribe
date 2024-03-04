@@ -1,6 +1,6 @@
 'use client';
 import { useSearchParams, usePathname, useRouter } from 'next/navigation';
-import { Button } from '../button';
+import { Button } from '../ui/button';
 import clsx from 'clsx';
 import { useState } from 'react';
 

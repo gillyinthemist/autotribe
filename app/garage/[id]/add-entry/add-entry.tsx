@@ -23,7 +23,8 @@ export default function AddEntry({ id }: {id: string}) {
     createEntry(formData)
     //reset form and bring back the add button
     setShowForm(!showForm);
-    formRef.current?.reset();
+    setComplete(false);
+    formRef.current!.reset();
   }
 
   return (

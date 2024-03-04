@@ -3,7 +3,7 @@ import { useDebouncedCallback } from 'use-debounce';
 import { useSearchParams, usePathname, useRouter } from 'next/navigation';
 import clsx from 'clsx';
 
-import { numberPlate } from '../fonts';
+import { numberPlate } from '../../ui/fonts';
 
 export default function EnterReg({className} : {className: string | undefined} ) {
   const searchParams = useSearchParams();

@@ -1,6 +1,6 @@
 import { fetchVehicleByReg } from '@/app/lib/data';
-import Form from '@/app/ui/vehicle/add-vehicle-form';
-import EnterReg from '@/app/ui/query/enter-reg';
+import Form from '@/app/garage/add-vehicle/add-vehicle-form';
+import EnterReg from '@/app/garage/add-vehicle/enter-reg';
 import Breadcrumbs from '@/app/ui/navigation/breadcrumbs';
 import { Metadata } from 'next';
 import { ToastContainer } from 'react-toastify';
@@ -22,8 +22,6 @@ export default async function Page({
   let newVehicle = null;
   if (vrm !== '') {
     newVehicle = await fetchVehicleByReg(vrm);
-  } else {
-    newVehicle = null;
   }
 
   return (

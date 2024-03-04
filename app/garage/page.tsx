@@ -1,5 +1,5 @@
-import Vehicles from '@/app/ui/garage/vehicles';
-import FilterButtons from '@/app/ui/query/filter-buttons';
+import Vehicles from '@/app/garage/vehicles';
+import FilterButtons from '@/app/garage/filter-buttons';
 import AddButtons from '@/app/ui/navigation/add-buttons';
 import Breadcrumbs from '@/app/ui/navigation/breadcrumbs';
 import { Metadata } from 'next';

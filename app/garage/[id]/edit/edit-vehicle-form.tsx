@@ -1,10 +1,10 @@
 'use client';
-import { Button } from '../button';
+import { Button } from '../../../ui/button';
 import { KeyIcon, ClockIcon, PencilIcon } from '@heroicons/react/24/outline';
 import { useUpload } from '@/app/hooks/use-upload';
-import UploadImage from '../upload-image/upload-image';
-import { VehicleDetails } from '@/app/lib/definitions';
-import { numberPlate } from '../fonts';
+import UploadImage from '../../../ui/upload-image/upload-image';
+import { VehicleDetails } from '@/app/lib/types';
+import { numberPlate } from '../../../ui/fonts';
 import clsx from 'clsx';
 import { updateVehicle } from '@/app/lib/actions';
 
@@ -103,7 +103,6 @@ export default function EditVehicle({
               className="h-5 w-5 cursor-pointer border-grey bg-raisin text-night focus:ring-2"
               type="radio"
               value="true"
-              defaultChecked
             />
             <label
               htmlFor="current"
@@ -119,6 +118,7 @@ export default function EditVehicle({
               className="h-5 w-5 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
               type="radio"
               value="false"
+              defaultChecked
             />
             <label
               htmlFor="previous"

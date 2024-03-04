@@ -1,7 +1,7 @@
 'use client';
-import AddEntry from './add-entry';
+import AddEntry from '../add-entry/add-entry';
 import ListEntries from './list-entries';
-import { Button } from '../button';
+import { Button } from '../../../ui/button';
 import { useState } from 'react';
 import clsx from 'clsx';
 

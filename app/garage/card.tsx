@@ -14,7 +14,7 @@ export function Card({ vehicle }: any) {
             alt="car"
             src={vehicle.image}
             fill={true}
-            className="h-full w-full object-cover object-left"
+            className="h-full w-full object-cover"
           />
         </Link>
         <form action={deleteVehicleWithId}>

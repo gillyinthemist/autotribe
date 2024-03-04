@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import { VehicleDetails } from '../../lib/definitions';
-import { numberPlate } from '../fonts';
+import { VehicleDetails } from '../../../lib/types';
+import { numberPlate } from '../../../ui/fonts';
 import { fetchTaxMot } from '@/app/lib/data';
 import { PencilIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
@@ -35,7 +35,7 @@ export default async function VehicleOverview({
           src={vehicle?.image || ''}
           height={300}
           width={300}
-          className="h-full w-full object-cover object-left"
+          className="h-full w-full object-cover"
         />
         <Link href={`/garage/${vehicle.id}/edit`}>
             <PencilIcon className="absolute right-2 top-2 z-40 h-8 w-8 text-raisin drop-shadow-lg hover:text-dun" />

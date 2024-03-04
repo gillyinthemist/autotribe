@@ -1,7 +1,7 @@
 import { fetchDiaryEntries, fetchVehicleById } from '@/app/lib/data';
 import Breadcrumbs from '@/app/ui/navigation/breadcrumbs';
-import VehicleDiary from '@/app/ui/diary/vehicle-diary';
-import VehicleOverview from '@/app/ui/vehicle/vehicle-overview';
+import VehicleDiary from '@/app/garage/[id]/details/vehicle-diary';
+import VehicleOverview from '@/app/garage/[id]/details/vehicle-overview';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 

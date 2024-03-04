@@ -1,6 +1,6 @@
 import { deleteEntry } from '@/app/lib/actions';
 import { TrashIcon } from '@heroicons/react/24/outline';
-import { Button } from '../button';
+import { Button } from '../../../ui/button';
 
 export default function DisplayEntry({ entry }: any) {
   let date = new Date(Date.now());

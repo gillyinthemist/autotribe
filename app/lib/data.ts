@@ -1,5 +1,5 @@
 import { sql } from '@vercel/postgres';
-import { UserProfile, VehicleDetails, VehicleCard } from './definitions';
+import { UserProfile, VehicleDetails, VehicleCard } from './types';
 
 export async function fetchOwnedVehicles (ownerId:string, filterBy:string) {
     // Add noStore() here to prevent the response from being cached.
@@ -40,14 +40,14 @@ export async function fetchDiaryEntries(id:string){
 export async function fetchVehicleByReg(vrm:string) {
   try {
     //query API to see if its a valid reg using UKVD API endpoint and get response
-    const res = await fetch(`https://uk1.ukvehicledata.co.uk/api/datapackage/VehicleData?v=2&api_nullitems=1&auth_apikey=90c37424-9799-4426-a462-c6c71b0d2c32&user_tag=&key_VRM=${vrm}`);
+    const res = await fetch(`https://uk1.ukvehicledata.co.uk/api/datapackage/VehicleData?v=2&api_nullitems=1&auth_apikey=${process.env.UKVD_API_KEY}&user_tag=&key_VRM=${vrm}`);
     const resJson = await res.json();
     
     let details = {}
     if (resJson.Response?.StatusCode === 'Success'){
 
       //Deconstruct response and make an object with result
-      const { Make, Model, Colour, YearOfManufacture } = resJson.Response.DataItems?.VehicleRegistration;
+      const { Make, Model, Colour, YearOfManufacture } = resJson.Response.DataItems.VehicleRegistration;
       details = {
         make: Make,
         model: Model,
@@ -58,8 +58,8 @@ export async function fetchVehicleByReg(vrm:string) {
     
     //return result and spread details in
     const result = {
-      status: resJson.Response?.StatusCode,
-      message: resJson.Response?.StatusMessage,
+      status: resJson.Response.StatusCode,
+      message: resJson.Response.StatusMessage,
       ...details
     }
     return result;
@@ -99,11 +99,11 @@ export async function fetchTaxMot(vrm:string){
   try {
     //First query API
     const res = await fetch(`
-    https://uk1.ukvehicledata.co.uk/api/datapackage/MotHistoryAndTaxStatusData?v=2&api_nullitems=1&auth_apikey=90c37424-9799-4426-a462-c6c71b0d2c32&user_tag=&key_VRM=${vrm}`);
+    https://uk1.ukvehicledata.co.uk/api/datapackage/MotHistoryAndTaxStatusData?v=2&api_nullitems=1&auth_apikey=${process.env.UKVD_API_KEY}&user_tag=&key_VRM=${vrm}`);
     const resJson = await res.json();
 
     //If not successful, return error
-    if(resJson.Response?.StatusCode !== "Success") return {error: resJson.Response.StatusMessage}
+    if(resJson.Response.StatusCode !== "Success") return {error: resJson.Response.StatusMessage}
     
     else {
     return resJson.Response.DataItems.VehicleStatus;

@@ -1,22 +1,10 @@
 'use server';
-import { z } from 'zod';
 import { sql } from '@vercel/postgres';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
 
-// const AddVehicleFormSchema = z.object({
-//   id: z.string(),
-//   ownerId: z.string(),
-//   vrm: z.coerce.string(),
-//   make: z.string(),
-//   model: z.string(),
-//   colour: z.string(),
-//   images: z.array(z.string()),
-//   description: z.string(),
-//   current: z.boolean(),
-// });
 
 export async function authenticate(
   prevState: string | undefined,
@@ -55,7 +43,7 @@ export async function createVehicle(formData: FormData) {
       );
 
       const resImage = await fetch(
-        `https://uk1.ukvehicledata.co.uk/api/datapackage/VehicleImageData?v=2&api_nullitems=1&auth_apikey=90c37424-9799-4426-a462-c6c71b0d2c32&user_tag=&key_VRM=${vehicle.vrm}`,
+        `https://uk1.ukvehicledata.co.uk/api/datapackage/VehicleImageData?v=2&api_nullitems=1&auth_apikey=${process.env.UKVD_API_KEY}&user_tag=&key_VRM=${vehicle.vrm}`,
       );
       const resImageJson = await resImage.json();
       vehicle.image =
@@ -114,9 +102,8 @@ export async function updateVehicle(id:string, formData:FormData,){
     //else update image url
     try {
       await sql`
-          UPDATE vehicles SET (vrm, make, model, colour, image, year, description, current)
-          VALUES (${vehicle.vrm as string}, ${vehicle.make as string}, ${vehicle.model as string}, ${vehicle.colour as string}, ${vehicle.image as string}, ${vehicle.year as string}, ${vehicle.description as string}, ${vehicle.current as string})
-          WHERE id = ${id}
+      UPDATE vehicles SET vrm = ${vehicle.vrm as string}, make = ${vehicle.make as string}, model=${vehicle.model as string}, colour=${vehicle.colour as string}, image=${vehicle.image}, year=${vehicle.year as string}, description=${vehicle.description as string}, current=${vehicle.current as string}
+      WHERE id = ${id}
         `;
     } catch (error) {
       console.log(error)
