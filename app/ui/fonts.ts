@@ -1,5 +1,5 @@
 import { Open_Sans } from 'next/font/google';
-import localFont from '@next/font/local';
+import localFont from "next/font/local";
 
 
 
