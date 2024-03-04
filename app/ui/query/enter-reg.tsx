@@ -11,7 +11,6 @@ export default function EnterReg({className} : {className: string | undefined} )
   const { replace } = useRouter();
   
   const handleReg = useDebouncedCallback((vrm:string) => {
-    console.log(`Searching... ${vrm}`);
     //create an instance of the CURRENT search params
     const params = new URLSearchParams(searchParams);
     //Then add the search parameter as 'vrm' to the instance if exists
@@ -30,7 +29,7 @@ export default function EnterReg({className} : {className: string | undefined} )
       <input
         id="vrm"
         name="vrm"
-        className={clsx(`${numberPlate.className} w-full rounded-lg active bg-yellow-400 focus:outline-none md:max-w-xl p-1 text-center text-7xl uppercase text-black`, className)}
+        className={clsx(`${numberPlate.className} w-full border-4 rounded-lg active bg-yellow-400 focus:outline-none md:max-w-xl p-1 text-center text-7xl uppercase text-black`, className)}
         type="text"
         autoComplete='off'
         onChange={e => handleReg(e.target.value)}

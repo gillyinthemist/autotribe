@@ -27,13 +27,13 @@ export default function AddEntry({ id }: {id: string}) {
   }
 
   return (
-    <div className="flex flex-col items-center rounded-lg bg-mag p-3">
+    <div className="flex flex-col items-center border-mag border-2 rounded-lg p-3">
       {!showForm && (
         <PlusCircleIcon
           height={40}
           width={40}
           onClick={handleAdd}
-          className="text-raisin hover:cursor-pointer hover:text-dun"
+          className="text-mag hover:cursor-pointer hover:text-dun"
         />
       )}
       {showForm && (
@@ -54,6 +54,7 @@ export default function AddEntry({ id }: {id: string}) {
               placeholder="Describe work, press completed if already carried out and select date, then enter to submit"
               className="h-10 w-full rounded-lg border border-raisin bg-white p-1 pl-2 text-sm text-night"
               defaultValue={''}
+              required
             />
           </div>
           <div className="flex items-center gap-1">
@@ -87,7 +88,7 @@ export default function AddEntry({ id }: {id: string}) {
             <PlusCircleIcon
               height={40}
               width={40}
-              className="hover:cursor-pointer text-night hover:text-dun"
+              className="text-mag hover:cursor-pointer hover:text-dun"
             />
           </button>
         </form>

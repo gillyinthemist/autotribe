@@ -1,5 +1,5 @@
 export default async function Page() {
   return (
-    <p>Home</p>
+    <p>Discover (Not yet implemented)</p>
   );
 }

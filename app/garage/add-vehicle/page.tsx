@@ -1,5 +1,5 @@
 import { fetchVehicleByReg } from '@/app/lib/data';
-import Form from '@/app/ui/add-vehicle/add-vehicle-form';
+import Form from '@/app/ui/vehicle/add-vehicle-form';
 import EnterReg from '@/app/ui/query/enter-reg';
 import Breadcrumbs from '@/app/ui/navigation/breadcrumbs';
 import { Metadata } from 'next';
@@ -54,8 +54,8 @@ export default async function Page({
 
         <EnterReg
           className={clsx(
-            { 'border-4 border-green-600': newVehicle?.status === 'Success' },
-            { 'border-4 border-red-600': newVehicle && newVehicle.status !== 'Success' },
+            { 'border-green-600': newVehicle?.status === 'Success' },
+            { 'border-red-600': newVehicle && newVehicle.status !== 'Success' },
           )}
         />
 

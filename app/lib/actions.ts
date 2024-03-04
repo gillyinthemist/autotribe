@@ -94,6 +94,42 @@ export async function createEntry(formData: FormData){
    revalidatePath(`/garage/${entry.vehicle_id}/details`);
 }
 
+export async function updateVehicle(id:string, formData:FormData,){
+  const vehicle = Object.fromEntries(formData.entries());
+  console.log(vehicle);
+
+  //If image not updated, then dont pass it into SQL
+  if (typeof vehicle.image !== 'string' || vehicle.image === ''){
+    console.log("updating without image..");
+    try {
+      await sql`
+          UPDATE vehicles SET vrm = ${vehicle.vrm as string}, make = ${vehicle.make as string}, model=${vehicle.model as string}, colour=${vehicle.colour as string}, year=${vehicle.year as string}, description=${vehicle.description as string}, current=${vehicle.current as string}
+          WHERE id = ${id}
+        `;
+    } catch (error) {
+      console.log(error)
+      return { message: 'Database Error: Failed to Update vehicle.' };
+    }
+  } else {
+    //else update image url
+    try {
+      await sql`
+          UPDATE vehicles SET (vrm, make, model, colour, image, year, description, current)
+          VALUES (${vehicle.vrm as string}, ${vehicle.make as string}, ${vehicle.model as string}, ${vehicle.colour as string}, ${vehicle.image as string}, ${vehicle.year as string}, ${vehicle.description as string}, ${vehicle.current as string})
+          WHERE id = ${id}
+        `;
+    } catch (error) {
+      console.log(error)
+      return { message: 'Database Error: Failed to Update vehicle.' };
+    }
+  }
+
+  revalidatePath(`/garage/${id}/details`);
+  revalidatePath('/garage');
+  redirect(`/garage/${id}/details`);
+
+}
+
 export async function deleteVehicle(id: string) {
   try {
     await sql`DELETE FROM vehicles WHERE id = ${id}`;

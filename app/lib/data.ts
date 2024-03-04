@@ -105,11 +105,7 @@ export async function fetchTaxMot(vrm:string){
     //If not successful, return error
     if(resJson.Response?.StatusCode !== "Success") return {error: resJson.Response.StatusMessage}
     
-    //Otherwise, lets try to add to DB
     else {
-  //     await sql`INSERT INTO vehicles (owner_id, vrm, make, model, colour, image, year, description, current)
-  //     VALUES (${ownerId}, ${vrm}, ${Make}, ${Model}, ${Colour}, ${image}, ${YearOfManufacture}, ${description}, ${current})
-  // `;
     return resJson.Response.DataItems.VehicleStatus;
     }
 

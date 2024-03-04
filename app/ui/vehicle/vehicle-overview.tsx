@@ -2,6 +2,8 @@ import Image from 'next/image';
 import { VehicleDetails } from '../../lib/definitions';
 import { numberPlate } from '../fonts';
 import { fetchTaxMot } from '@/app/lib/data';
+import { PencilIcon } from '@heroicons/react/24/outline';
+import Link from 'next/link';
 
 export default async function VehicleOverview({
   vehicle,
@@ -18,6 +20,7 @@ export default async function VehicleOverview({
       VedExpiryDate: null,
       VedDaysRemaining: null,
     },
+    error: false
   };
 
   if (vehicle.current) {
@@ -34,10 +37,13 @@ export default async function VehicleOverview({
           width={300}
           className="h-full w-full object-cover object-left"
         />
+        <Link href={`/garage/${vehicle.id}/edit`}>
+            <PencilIcon className="absolute right-2 top-2 z-40 h-8 w-8 text-raisin drop-shadow-lg hover:text-dun" />
+        </Link>
       </div>
-      <div className="aspect-[5/1] rounded-lg bg-yellow-400 p-1">
+      <div className="flex items-center justify-center rounded-lg bg-yellow-400 p-1">
         <p
-          className={`${numberPlate.className} text-center text-7xl uppercase text-black`}
+          className={`${numberPlate.className} text-7xl uppercase text-black`}
         >
           {vehicle?.vrm}
         </p>
@@ -62,7 +68,7 @@ export default async function VehicleOverview({
           <strong>Colour:</strong> {vehicle?.colour}
         </p>
       </div>
-      {vehicle.current && (
+      {vehicle.current && !motAndTax.error && (
         <div className="flex flex-row gap-2 w-full">
           <div className="flex flex-col basis-1/2 gap-2 rounded-xl bg-grey p-5 text-center">
             <p>
