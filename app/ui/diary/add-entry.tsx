@@ -2,7 +2,6 @@
 import { PlusCircleIcon } from '@heroicons/react/24/outline';
 
 import { useState,useRef } from 'react';
-import { Button } from '../button';
 import clsx from 'clsx';
 import { createEntry } from '@/app/lib/actions';
 

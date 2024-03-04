@@ -4,8 +4,8 @@ import Logo from '@/app/ui/autotribe-logo';
 import { PowerIcon } from '@heroicons/react/24/outline';
 import { fetchUserProfileById } from '@/app/lib/data';
 import Image from 'next/image';
+import { signOut } from '@/auth';
 
-// import { signOut } from '@/auth';
 
 export default async function SideNav() {
   const user = await fetchUserProfileById(
@@ -41,10 +41,10 @@ export default async function SideNav() {
         <NavLinks />
         <div className="hidden h-auto w-full grow rounded-md bg-brown md:block"></div>
         <form
-        // action={async () => {
-        //   'use server';
-        //   await signOut();
-        // }}
+        action={async () => {
+          'use server';
+          await signOut();
+        }}
         >
           <button className="flex h-[48px] w-full grow items-center justify-center gap-2 rounded-md bg-brown p-3 text-sm font-medium hover:bg-dun hover:text-night md:flex-none md:justify-start md:p-2 md:px-3">
             <PowerIcon className="w-6" />
