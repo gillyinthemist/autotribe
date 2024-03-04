@@ -11,7 +11,6 @@ export default function Form({ newVehicle }: any) {
   const searchParams = useSearchParams();
   const vrm = searchParams.get('vrm') || '';
   const upload = useUpload();
-  const initialState = { error: null };
   // const [state, dispatch] = useFormState(createVehicle, initialState);
 
   return (

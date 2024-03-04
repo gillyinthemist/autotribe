@@ -1,4 +1,4 @@
-import { fetchVehicleById } from '@/app/lib/data';
+import { fetchDiaryEntries, fetchVehicleById } from '@/app/lib/data';
 import Breadcrumbs from '@/app/ui/navigation/breadcrumbs';
 import VehicleDiary from '@/app/ui/vehicle-detail/vehicle-diary';
 import VehicleOverview from '@/app/ui/vehicle-detail/vehicle-overview';
@@ -13,6 +13,8 @@ export const metadata: Metadata = {
 export default async function Page({ params }: { params: { id: string } }) {
   const id = params.id;
   const vehicle = await fetchVehicleById(id);
+  const entries = await fetchDiaryEntries(id);
+
   if (!vehicle) {
     notFound();
   }
@@ -32,7 +34,7 @@ export default async function Page({ params }: { params: { id: string } }) {
         {vehicle && (
           <>
             <VehicleOverview vehicle={vehicle} />
-            <VehicleDiary id={vehicle.id} />
+            <VehicleDiary id={vehicle.id} entries={entries}/>
           </>
         )}
       </div>

@@ -41,9 +41,9 @@ export type UserProfile = {
 
 export type DiaryEntry = {
   id: string;
-  vehicleId: string;
-  dateAdded: Date;
-  dateCompleted: Date | null;
+  vehicle_id: string;
+  date_added: Date;
+  date_completed: Date | null;
   entry: string;
   complete: boolean;
 };

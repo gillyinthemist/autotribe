@@ -57,6 +57,24 @@ export async function createVehicle(formData: FormData) {
   redirect('/garage');
 }
 
+export async function createEntry(formData: FormData){
+  const entry = Object.fromEntries(formData.entries());
+  const added = new Date(Date.now()).toISOString()
+
+  if (!entry.complete) entry.complete = 'false';
+
+  try {
+    await sql`INSERT INTO entries (vehicle_id, date_added, date_completed, entry, complete)
+    VALUES(${entry.vehicle_id as string}, ${added}, ${entry.date_completed as string}, ${entry.entry as string}, ${entry.complete as string})
+    `;
+  } catch (error) {
+    console.log(error)
+    return { message: 'Database Error' };
+  }
+
+   revalidatePath(`/garage/${entry.vehicle_id}/details`);
+}
+
 export async function deleteVehicle(id: string) {
   try {
     await sql`DELETE FROM vehicles WHERE id = ${id}`;

@@ -1,17 +1,28 @@
-import { ListBulletIcon } from "@heroicons/react/24/outline";
+'use client'
 import AddEntry from "../diary/add-entry";
-import DisplayEntry from "../diary/display-entry";
 import ListEntries from "../diary/list-entries";
 import { fetchDiaryEntries } from "@/app/lib/data";
+import { Button } from "../button";
+import { useState } from "react";
+import clsx from "clsx";
 
 
-export default async function VehicleDiary({id} : {id: string}) {
-  const entries = await fetchDiaryEntries(id);
+export default function VehicleDiary({id, entries}: any) {
+  const [filter, setFilter] = useState(true);
+
+  function handleClick(event:any){
+    if (event.target.value === "done") setFilter(true)
+    else setFilter(false)
+  }
+
   return (
     <div className="flex flex-col flex-grow bg-brown rounded-lg p-5">
-      <p>Diary Goes here</p>
+      <div className="flex justify-center gap-2 p-4">
+      <Button value={"done"} onClick={handleClick} className={clsx({"text-night bg-white" : filter})}>Work Completed</Button>
+      <Button value={"todo"} onClick={handleClick} className={clsx({"text-night bg-white" : !filter})}>Work Needed</Button>
+      </div>
       <AddEntry id={id}/>
-      <ListEntries entries={entries}/>
+      <ListEntries entries={entries.filter((entry:any) => entry.complete===filter)}/>
     </div>
   );
 }
