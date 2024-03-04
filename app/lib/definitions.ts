@@ -43,7 +43,7 @@ export type DiaryEntry = {
   id: string;
   vehicle_id: string;
   date_added: Date;
-  date_completed: Date | null;
+  date_completed: Date;
   entry: string;
   complete: boolean;
 };

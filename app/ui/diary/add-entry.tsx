@@ -1,6 +1,7 @@
 'use client';
 import { PlusCircleIcon } from '@heroicons/react/24/outline';
-import { useState } from 'react';
+
+import { useState,useRef } from 'react';
 import { Button } from '../button';
 import clsx from 'clsx';
 import { createEntry } from '@/app/lib/actions';
@@ -9,12 +10,21 @@ export default function AddEntry({ id }: {id: string}) {
   const [showForm, setShowForm] = useState(false);
   const [complete, setComplete] = useState(false);
 
+  const formRef =  useRef<HTMLFormElement>(null);
+
   function handleAdd() {
-    setShowForm(true);
+    setShowForm(!showForm);
   }
 
   function handleComplete() {
     setComplete(!complete);
+  }
+
+  function submit(formData:FormData) {
+    createEntry(formData)
+    //reset form and bring back the add button
+    setShowForm(!showForm);
+    formRef.current?.reset();
   }
 
   return (
@@ -28,7 +38,7 @@ export default function AddEntry({ id }: {id: string}) {
         />
       )}
       {showForm && (
-        <form action={createEntry} className="flex w-full flex-row items-center justify-between gap-2 md:flex-row">
+        <form action={submit} ref={formRef} className="flex w-full flex-row items-center justify-between gap-2 md:flex-row">
           <div className="flex-grow">
           <input
               type="text"
@@ -78,7 +88,6 @@ export default function AddEntry({ id }: {id: string}) {
             <PlusCircleIcon
               height={40}
               width={40}
-              onClick={handleAdd}
               className="hover:cursor-pointer text-night hover:text-dun"
             />
           </button>
