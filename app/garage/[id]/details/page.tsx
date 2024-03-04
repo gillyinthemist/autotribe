@@ -32,7 +32,7 @@ export default async function Page({ params }: { params: { id: string } }) {
         {vehicle && (
           <>
             <VehicleOverview vehicle={vehicle} />
-            <VehicleDiary vehicle={vehicle} />
+            <VehicleDiary id={vehicle.id} />
           </>
         )}
       </div>

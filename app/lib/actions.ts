@@ -63,6 +63,17 @@ export async function deleteVehicle(id: string) {
     revalidatePath('/garage');
     return { message: 'Deleted Car.' };
   } catch (error) {
-    return { message: 'Database Error: Failed to Delete Invoice.' };
+    return { message: 'Database Error: Failed to Delete Vehicle.' };
+  }
+}
+
+
+export async function deleteEntry(entry_id: string, vehicle_id: string) {
+  try {
+    await sql`DELETE FROM entries WHERE id = ${entry_id}`;
+    revalidatePath(`/garage/${vehicle_id}/details`);
+    return { message: 'Deleted Entry.' };
+  } catch (error) {
+    return { message: 'Database Error: Failed to Delete Entry' };
   }
 }

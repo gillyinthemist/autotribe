@@ -6,7 +6,8 @@ const users = [
     username: '@gillsbmw',
     email: 'user@example.com',
     password: 'password',
-    profile_pic: 'https://scontent.cdninstagram.com/v/t51.2885-19/311030754_863920138352176_7083972161174976267_n.jpg?stp=dst-jpg_s320x320&_nc_ht=scontent-lhr6-2.cdninstagram.com&_nc_cat=104&_nc_ohc=mwg8Cj5RMpsAX_yu0MW&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_AfBTIcRMmYjUkkXno8aIHgZ5mqaXB7emyixZepVwTnR6OQ&oe=65E7908C&_nc_sid=8b3546',
+    profile_pic:
+      'https://scontent.cdninstagram.com/v/t51.2885-19/311030754_863920138352176_7083972161174976267_n.jpg?stp=dst-jpg_s320x320&_nc_ht=scontent-lhr6-2.cdninstagram.com&_nc_cat=104&_nc_ohc=mwg8Cj5RMpsAX_yu0MW&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_AfBTIcRMmYjUkkXno8aIHgZ5mqaXB7emyixZepVwTnR6OQ&oe=65E7908C&_nc_sid=8b3546',
   },
 ];
 
@@ -97,6 +98,81 @@ const vehicles = [
   },
 ];
 
+const entries = [
+  {
+    vehicle_id: '7a6350a4-9a0e-4575-b6b1-1372af02f345',
+    date_added: '2023-04-27',
+    date_completed: '2023-08-02',
+    entry: 'Transmission fluid replacement',
+    complete: true,
+  },
+  {
+    vehicle_id: '7a6350a4-9a0e-4575-b6b1-1372af02f345',
+    date_added: '2021-10-22',
+    date_completed: null,
+    entry: 'Air conditioning system check',
+    complete: false,
+  },
+  {
+    vehicle_id: '7a6350a4-9a0e-4575-b6b1-1372af02f345',
+    date_added: '2021-07-03',
+    date_completed: null,
+    entry: 'Battery inspection and replacement',
+    complete: false,
+  },
+  {
+    vehicle_id: '7a6350a4-9a0e-4575-b6b1-1372af02f345',
+    date_added: '2022-03-29',
+    date_completed: null,
+    entry: 'Oil change and filter replacement',
+    complete: false,
+  },
+  {
+    vehicle_id: '7a6350a4-9a0e-4575-b6b1-1372af02f345',
+    date_added: '2020-09-03',
+    date_completed: '2022-06-14',
+    entry: 'Tire rotation and alignment',
+    complete: true,
+  },
+  {
+    vehicle_id: '7a6350a4-9a0e-4575-b6b1-1372af02f345',
+    date_added: '2021-05-01',
+    date_completed: '2022-03-24',
+    entry: 'Radiator flush and fill',
+    complete: true,
+  },
+  {
+    vehicle_id: '7a6350a4-9a0e-4575-b6b1-1372af02f345',
+    date_added: '2021-04-08',
+    date_completed: null,
+    entry: 'Engine diagnostic and tune-up',
+    complete: false,
+  },
+  {
+    vehicle_id: '7a6350a4-9a0e-4575-b6b1-1372af02f345',
+    date_added: '2022-08-21',
+    date_completed: '2023-12-11',
+    entry: 'Tire rotation and alignment',
+    complete: true,
+  },
+  {
+    vehicle_id: '7a6350a4-9a0e-4575-b6b1-1372af02f345',
+    date_added: '2024-01-09',
+    date_completed: '2024-02-14',
+    entry: 'Radiator flush and fill',
+    complete: true,
+  },
+  {
+    vehicle_id: '7a6350a4-9a0e-4575-b6b1-1372af02f345',
+    date_added: '2024-02-23',
+    date_completed: null,
+    entry: 'Headlight and taillight inspection',
+    complete: false,
+  },
+];
+
 module.exports = {
-  vehicles, users
+  vehicles,
+  users,
+  entries,
 };

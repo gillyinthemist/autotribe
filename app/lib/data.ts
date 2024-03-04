@@ -25,6 +25,18 @@ export async function fetchOwnedVehicles (ownerId:string, filterBy:string) {
     }
 }
 
+export async function fetchDiaryEntries(id:string){
+  try {
+    console.log('Fetching diary entries by id...');
+    const entries = await sql `SELECT * FROM entries WHERE vehicle_id = ${id}`
+    // console.log('Fetched', entries.rows);
+    return entries.rows;
+  } catch (error) {
+    console.error('Database Error:', error);
+    // throw new Error('Failed to fetch vehicle data.');
+  }
+}
+
 export async function fetchVehicleByReg(vrm:string) {
   try {
     //query API to see if its a valid reg using UKVD API endpoint and get response
@@ -108,3 +120,4 @@ export async function fetchTaxMot(vrm:string){
     };
   }
 }
+

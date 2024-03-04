@@ -38,3 +38,12 @@ export type UserProfile = {
   username: string;
   profile_pic: string;
 };
+
+export type DiaryEntry = {
+  id: string;
+  vehicleId: string;
+  dateAdded: Date;
+  dateCompleted: Date | null;
+  entry: string;
+  complete: boolean;
+};

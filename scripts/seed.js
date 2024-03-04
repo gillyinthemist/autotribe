@@ -1,5 +1,5 @@
 const { db } = require('@vercel/postgres');
-const { vehicles, users } = require('../app/lib/placeholder-data.js');
+const { vehicles, users, entries } = require('../app/lib/placeholder-data.js');
 const bcrypt = require('bcrypt');
 
 
@@ -31,6 +31,49 @@ async function seedVehicles(client) {
     };
   } catch (error) {
     console.error('Error seeding vehicles:', error);
+    throw error;
+  }
+}
+
+async function seedDiary(client) {
+  try {
+    await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
+    // await client.sql`DROP TABLE IF EXISTS entries`;
+
+    // Create the "vehicles" table if it doesn't exist
+    const createTable = await client.sql`
+      CREATE TABLE entries (
+        id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+        vehicle_id UUID NOT NULL,
+        date_added DATE NOT NULL,
+        date_completed DATE,
+        entry VARCHAR(255) NOT NULL,
+        complete BOOLEAN NOT NULL
+      );
+    `;
+
+    console.log(`Created "entries" table`);
+
+
+    // Insert data into the "entries" table
+    const insertedEntries = await Promise.all(
+      entries.map(async (entry) => {
+        return client.sql`
+    INSERT INTO entries (vehicle_id, date_added, date_completed, entry, complete)
+    VALUES (${entry.vehicle_id}, ${entry.date_added}, ${entry.date_completed}, ${entry.entry}, ${entry.complete})
+    ON CONFLICT (id) DO NOTHING;
+  `;
+      }),
+    );
+
+    console.log(`Seeded ${insertedEntries.length} entries`);
+
+    return {
+      createTable,
+      entries: insertedEntries
+    };
+  } catch (error) {
+    console.error('Error seeding entries:', error);
     throw error;
   }
 }
@@ -82,7 +125,8 @@ async function seedUsers(client) {
 async function main() {
   const client = await db.connect();
 
-  await seedVehicles(client);
+  // await seedVehicles(client);
+  await seedDiary(client);
   // await seedUsers(client);
   await client.end();
 }
