@@ -1,12 +1,13 @@
 import { sql } from '@vercel/postgres';
 import { UserProfile, VehicleDetails, VehicleCard } from './types';
+import { unstable_noStore as noStore } from 'next/cache';
 
 export async function fetchOwnedVehicles(ownerId: string, filterBy: string) {
+  noStore();
   // Add noStore() here to prevent the response from being cached.
   // This is equivalent to in fetch(..., {cache: 'no-store'}).
   if (filterBy === 'all') {
     try {
-      console.log('Fetching owned vehicles...');
       const vehicles =
         await sql<VehicleCard>`SELECT id, make, model, image FROM vehicles WHERE owner_id = ${ownerId}`;
       return vehicles.rows;
