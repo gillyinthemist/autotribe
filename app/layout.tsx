@@ -1,6 +1,7 @@
 import '@/app/ui/global.css';
 import type { Metadata } from 'next';
 import { openSans } from './ui/fonts';
+import { Analytics } from '@vercel/analytics/react';
 
 export const metadata: Metadata = {
   title: {
@@ -17,7 +18,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={openSans.className}>{children}</body>
+      <body className={openSans.className}>
+        {children} <Analytics />
+      </body>
     </html>
   );
 }
