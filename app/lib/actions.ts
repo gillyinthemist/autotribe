@@ -4,6 +4,8 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
+const bcrypt = require('bcrypt');
+
 
 export async function authenticate(
   prevState: string | undefined,
@@ -23,6 +25,25 @@ export async function authenticate(
     throw error;
   }
 }
+
+export async function register(prevState: string | undefined, formData:FormData){
+  const user = Object.fromEntries(formData.entries());
+  if (typeof user.image !== 'string' || user.image === '') user.image = 'https://res.cloudinary.com/dfees7uqp/image/upload/v1709653535/xfqogjb3hc4xpfepnwu7.jpg'
+  
+  try {
+    const hashedPassword = await bcrypt.hash(user.password, 10);
+    const exists = await sql`SELECT * FROM users WHERE email=${user.email as string}`;
+    if (exists.rows[0]) return 'Email already in use';  
+    await sql`INSERT INTO users (first_name, last_name, username, email, password, profile_pic)
+      VALUES (${user.firstname as string}, ${user.lastname as string}, ${user.email as string}, ${user.email as string}, ${hashedPassword as string}, ${user.image as string})
+   `;
+    console.log('Successfully added to DB: ', user);
+  } catch (error) {
+    return 'Something went wrong. Please try again'
+  }
+  redirect('/login');
+}
+
 
 export async function createVehicle(ownerId:string, formData: FormData) {
   const vehicle = Object.fromEntries(formData.entries());

@@ -27,13 +27,13 @@ export default async function SideNav() {
 
       <div className="flex grow flex-row justify-between space-x-2 md:flex-col md:space-x-0 md:space-y-2">
         <div className="hidden w-full flex-col items-center gap-5 rounded-md bg-brown p-6 md:flex">
-          <div className="overflow-hidden rounded-full">
+          <div className="relative aspect-square overflow-hidden rounded-full">
             <Image
               alt="user"
               src={profile_pic}
               height={100}
               width={100}
-              className="h-full w-full"
+              className="h-full w-full object-cover"
               priority
             />
           </div>
