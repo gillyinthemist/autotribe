@@ -1,3 +1,4 @@
+'use server'
 import axios from 'axios';
 import type { DropzoneOptions } from 'react-dropzone';
 
@@ -20,10 +21,14 @@ type UploadFileProps = {
   onUploadProgress: (progress: number) => void;
 };
 
+console.log(process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL);
+
+
 export const uploadFile = async ({
   formData,
   onUploadProgress,
 }: UploadFileProps): Promise<ImageResponse> => {
+  formData!.append("upload_preset", `${process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET}`)
   const { data } = await axios.request<ImageResponse>({
     method: 'POST',
     headers: { 'Content-Type': 'multipart/form-data' },
