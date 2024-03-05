@@ -14,7 +14,7 @@ export default function VehicleDiary({ id, entries }: any) {
   }
 
   return (
-    <div className="flex max-w-3xl flex-grow flex-col rounded-lg bg-brown p-5">
+    <div className="flex flex-grow flex-col rounded-lg bg-brown p-5">
       <div className="flex justify-center gap-2 p-4">
         <Button
           value={'done'}

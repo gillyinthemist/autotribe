@@ -28,17 +28,17 @@ export default function Page() {
             <span>Register</span> <ArrowRightIcon className="w-5 md:w-6" />
           </Link>
         </div>
-
+        <div></div>
         {/* Add Hero Images Here */}
         <Image
-          src="/desktop-hero.jpg"
-          width={1000}
-          height={500}
-          className="hidden max-w-full flex-grow rounded-lg object-cover md:block"
+          src="/desktop-hero.png"
+          width={1200}
+          height={800}
+          className="hidden m-auto rounded-lg md:block"
           alt="Screenshots of the dashboard project showing desktop version"
         />
         <Image
-          src="/mobile-hero.jpg"
+          src="/mobile-hero.png"
           width={560}
           height={620}
           className="block w-full rounded-lg md:hidden "
