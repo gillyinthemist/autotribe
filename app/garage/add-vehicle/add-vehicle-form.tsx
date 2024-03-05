@@ -7,15 +7,19 @@ import { useUpload } from '@/app/hooks/use-upload';
 import UploadImage from '../../ui/upload-image/upload-image';
 import { useSearchParams } from 'next/navigation';
 
-export default function Form({ newVehicle }: any) {
+export default function Form({ newVehicle, userId }: any) {
   const searchParams = useSearchParams();
   const vrm = searchParams.get('vrm') || '';
   const upload = useUpload();
   // const [state, dispatch] = useFormState(createVehicle, initialState);
 
+  function submit(formData: FormData) {
+    createVehicle(userId, formData);
+  }
+
   return (
     <form
-      action={createVehicle}
+      action={submit}
       className="flex w-full flex-col items-center gap-4 md:max-w-xl"
     >
       <input id="vrm" name="vrm" type="text" value={vrm} hidden readOnly />

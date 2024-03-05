@@ -20,7 +20,6 @@ type UploadFileProps = {
   onUploadProgress: (progress: number) => void;
 };
 
-console.log(process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL);
 
 
 export const uploadFile = async ({

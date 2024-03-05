@@ -5,6 +5,19 @@ export const authConfig = {
     signIn: '/login',
   },
   callbacks: {
+    jwt: async ({ token, user }) => {
+      // user is defined when the user is first authenticated
+
+      if (user) {
+        token.id = user.id; // Add the user ID to the JWT
+      }
+      return token;
+    },
+    session: async ({ session, token }) => {
+      session.user.id = token.id as string;
+      return session;
+    },
+
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
       const isInApp = nextUrl.pathname.startsWith('/garage');

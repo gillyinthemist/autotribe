@@ -24,12 +24,9 @@ export async function authenticate(
   }
 }
 
-export async function createVehicle(formData: FormData) {
+export async function createVehicle(ownerId:string, formData: FormData) {
   const vehicle = Object.fromEntries(formData.entries());
   vehicle.vrm = vehicle.vrm.toString().toUpperCase();
-  console.log(vehicle);
-
-  const ownerId = '410544b2-4001-4271-9855-fec4b6a6442a';
 
   try {
     if (typeof vehicle.image !== 'string' || vehicle.image === '') {

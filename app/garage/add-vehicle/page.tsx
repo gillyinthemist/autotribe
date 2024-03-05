@@ -6,6 +6,7 @@ import { Metadata } from 'next';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import clsx from 'clsx';
+import { auth } from '@/auth';
 
 export const metadata: Metadata = {
   title: 'Add Vehicle',
@@ -18,6 +19,8 @@ export default async function Page({
     vrm?: string;
   };
 }) {
+  const session = await auth();
+  const userId = session?.user?.id || '';
   const vrm = searchParams?.vrm || '';
   let newVehicle = null;
   if (vrm !== '') {
@@ -60,7 +63,7 @@ export default async function Page({
         {newVehicle &&
           (newVehicle.status === 'Success' ? (
             <>
-              <Form newVehicle={newVehicle} />
+              <Form newVehicle={newVehicle} userId={userId} />
             </>
           ) : (
             <p>{newVehicle.message}</p>

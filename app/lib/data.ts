@@ -13,30 +13,24 @@ export async function fetchOwnedVehicles(ownerId: string, filterBy: string) {
       return vehicles.rows;
     } catch (error) {
       console.error('Database Error:', error);
-      // throw new Error('Failed to fetch vehicle data.');
     }
   } else {
     try {
-      console.log('Fetching filtered vehicles...');
       const vehicles =
         await sql<VehicleCard>`SELECT id, make, model, image FROM vehicles WHERE owner_id = ${ownerId} AND current = ${true ? filterBy === '' : false}`;
       return vehicles.rows;
     } catch (error) {
       console.error('Database Error:', error);
-      // throw new Error('Failed to fetch vehicle data.');
     }
   }
 }
 
 export async function fetchDiaryEntries(id: string) {
   try {
-    console.log('Fetching diary entries by id...');
     const entries = await sql`SELECT * FROM entries WHERE vehicle_id = ${id}`;
-    // console.log('Fetched', entries.rows);
     return entries.rows;
   } catch (error) {
     console.error('Database Error:', error);
-    // throw new Error('Failed to fetch vehicle data.');
   }
 }
 
@@ -75,25 +69,21 @@ export async function fetchVehicleByReg(vrm: string) {
 
 export async function fetchVehicleById(id: string) {
   try {
-    console.log('Fetching owned vehicles...');
     const vehicle =
       await sql<VehicleDetails>`SELECT * FROM vehicles WHERE id = ${id}`;
     return vehicle.rows[0];
   } catch (error) {
     console.error('Database Error:', error);
-    // throw new Error('Failed to fetch vehicle data.');
   }
 }
 
 export async function fetchUserProfileById(id: string) {
   try {
-    console.log('Fetching owned vehicles...');
     const user =
       await sql<UserProfile>`SELECT id, first_name, last_name, username, profile_pic FROM users WHERE id = ${id}`;
     return user.rows[0];
   } catch (error) {
     console.error('Database Error:', error);
-    // throw new Error('Failed to fetch vehicle data.');
   }
 }
 

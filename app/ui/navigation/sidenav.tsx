@@ -5,10 +5,13 @@ import { PowerIcon } from '@heroicons/react/24/outline';
 import { fetchUserProfileById } from '@/app/lib/data';
 import Image from 'next/image';
 import { signOut } from '@/auth';
+import { auth } from '@/auth';
 
 export default async function SideNav() {
+  const session = await auth();
+  const userId = session?.user?.id || '';
   const user = await fetchUserProfileById(
-    '410544b2-4001-4271-9855-fec4b6a6442a',
+    userId
   );
 
   const profile_pic = user?.profile_pic || '';

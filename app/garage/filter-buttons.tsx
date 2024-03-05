@@ -10,6 +10,7 @@ export default function FilterButtons() {
   const { replace } = useRouter();
   const [filter, setFilter] = useState('');
 
+
   function handleChange(filterBy: string = '') {
     console.log();
     //create an instance of the CURRENT search params
