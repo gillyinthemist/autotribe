@@ -1,6 +1,8 @@
 # Autotribe
 
 The car collection management application for enthusiast collectors.
+![Mockups](public/desktop-hero.png)
+
 
 ## Overview
 
