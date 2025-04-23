@@ -3,7 +3,7 @@ import { DiaryEntry } from '@/app/lib/types';
 
 export default function ListEntries({ entries }: any) {
   return (
-    <div className="mt-4 flex flex-col items-center gap-3 rounded-lg">
+    <div className="mt-2 flex flex-col items-center gap-0.5 rounded-lg">
       {entries
         .sort((a: DiaryEntry, b: DiaryEntry) => {
           if (a.complete)

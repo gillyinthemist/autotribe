@@ -1,9 +1,7 @@
 'use client';
 
 import {
-  UserGroupIcon,
   HomeIcon,
-  DocumentDuplicateIcon,
   PencilSquareIcon,
   EyeIcon,
   WrenchIcon,
@@ -27,23 +25,30 @@ const links = [
 
 export default function NavLinks() {
   const pathname = usePathname();
+
   return (
     <>
       {links.map((link) => {
         const LinkIcon = link.icon;
+        const isActive =
+          pathname === link.href ||
+          (link.href !== '/garage' && pathname.startsWith(link.href));
+
         return (
           <Link
             key={link.name}
             href={link.href}
             className={clsx(
-              'flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-brown p-3 text-sm font-medium hover:bg-dun hover:text-night md:flex-none md:justify-start md:p-2 md:px-3',
+              'flex h-12 items-center gap-3 rounded-lg px-4 py-2 text-sm font-medium transition-colors',
               {
-                'bg-dun text-night': pathname === link.href,
+                'bg-blue-500 text-white shadow-md': isActive,
+                'bg-gray-700 text-gray-300 hover:bg-gray-600/70 hover:text-white':
+                  !isActive,
               },
             )}
           >
-            <LinkIcon className="w-6" />
-            <p className="hidden md:block">{link.name}</p>
+            <LinkIcon className="h-5 w-5" />
+            <span className="hidden md:block">{link.name}</span>
           </Link>
         );
       })}
